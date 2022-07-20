@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-  margin: auto auto;
+  margin: 50px auto;
   max-width: 700px;
   display: flex;
   flex-direction: column;
@@ -26,6 +26,10 @@ body {
   border: 2px solid #d2d2d2;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.17);
   border-radius: 15px;
+}
+
+form {
+  margin-bottom: 50px;
 }
 
 .input {
@@ -53,4 +57,48 @@ body {
 
 .add-btn:hover {
   background: #0046c3;
+}
+
+.todo-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 32px;
+  color: #505050;
+}
+
+h4 {
+  font-weight: 500;
+}
+
+.todo-list-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  align-items: center;
+  border: 2px solid #b2b2b2;
+  border-radius: 5px;
+  padding: 10px 20px;
+  height: auto;
+  max-width: 570px;
+}
+
+.completed-btn {
+  display: flex;
+  padding: 10px 20px;
+  width: auto;
+  height: 36px;
+  background: #eb5757;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  font-family: "Product Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
 }

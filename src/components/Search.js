@@ -19,16 +19,40 @@ export default function Search() {
 
   const [todo, setTodo] = React.useState([]);
 
-  function addTodo() {
+  function addTodo(e) {
+    e.preventDefault();
     setTodo((prevState) => {
       return [...prevState, formData.search];
+      formData.value = "";
     });
     // console.log(todo);
   }
 
-  // console.log(todo);
+  console.log(todo);
 
-  const todoList = todo.map((todo) => <h1>new todo</h1>);
+  let styles, btnStyle;
+
+  function completed(e) {
+    e.preventDefault();
+    console.log("button clicked");
+
+    styles = {
+      textDecoration: "line-through",
+    };
+
+    // btnStyle = {
+    //   background: "#27C62D".
+    // };
+  }
+
+  const todoList = todo.map((todo) => (
+    <div className="todo-list-item">
+      <div style={styles}>{todo}</div>
+      <button className="completed-btn" style={btnStyle} onClick={completed}>
+        Completed
+      </button>
+    </div>
+  ));
 
   return (
     <div>
@@ -40,11 +64,17 @@ export default function Search() {
           name="search"
           value={formData.search}
           className="input"
+          required
         />
-        <button className="btn add-btn" onClick={addTodo}>
+        <button className="add-btn" onClick={addTodo}>
           Add
         </button>
       </form>
+      <div className="todo-head">
+        <h2>Todo List</h2>
+        <h4>{todo.length} todos remaining</h4>
+      </div>
+
       {todoList}
     </div>
   );
