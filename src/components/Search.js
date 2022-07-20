@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Search() {
   const [formData, setFormData] = React.useState({
@@ -17,7 +17,7 @@ export default function Search() {
     console.log(value);
   }
 
-  const [todo, setTodo] = React.useState([]);
+  const [todo, setTodo] = useState([]);
 
   function addTodo(e) {
     e.preventDefault();
