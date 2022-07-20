@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Search() {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     search: "",
   });
 
@@ -17,15 +17,15 @@ export default function Search() {
     console.log(value);
   }
 
-  const [todo, setTodo] = React.useState([]);
+  const [todo, setTodo] = useState([]);
 
   function addTodo(e) {
     e.preventDefault();
     setTodo((prevState) => {
       return [...prevState, formData.search];
-      formData.value = "";
     });
-    // console.log(todo);
+    //reset input
+    setFormData({ search: "" });
   }
 
   console.log(todo);
