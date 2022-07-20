@@ -5,8 +5,6 @@ export default function Search() {
     search: "",
   });
 
-  const [todo, setTodo] = React.useState([]);
-
   function handleChange(event) {
     const { name, value, type } = event.target;
     setFormData((prevFormData) => {
@@ -18,6 +16,8 @@ export default function Search() {
 
     console.log(value);
   }
+
+  const [todo, setTodo] = React.useState([]);
 
   function addTodo() {
     setTodo((prevState) => {
@@ -42,8 +42,7 @@ export default function Search() {
           className="input"
         />
         <button className="btn add-btn" onClick={addTodo}>
-          {" "}
-          Add{" "}
+          Add
         </button>
       </form>
       {todoList}
