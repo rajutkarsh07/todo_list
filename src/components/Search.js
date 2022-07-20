@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Search() {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     search: "",
   });
 
@@ -23,9 +23,9 @@ export default function Search() {
     e.preventDefault();
     setTodo((prevState) => {
       return [...prevState, formData.search];
-      formData.value = "";
     });
-    // console.log(todo);
+    //reset input
+    setFormData({ search: "" });
   }
 
   console.log(todo);
