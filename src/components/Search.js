@@ -21,11 +21,15 @@ export default function Search() {
 
   function addTodo(e) {
     e.preventDefault();
-    setTodo((prevState) => {
-      return [...prevState, formData.search];
-      formData.value = "";
-    });
-    // console.log(todo);
+    if (formData.search !== "") {
+      setTodo((prevState) => {
+        return [...prevState, formData.search];
+      });
+      // console.log(todo);
+      setFormData({ search: "" });
+    } else {
+      return;
+    }
   }
 
   console.log(todo);
@@ -36,9 +40,7 @@ export default function Search() {
     e.preventDefault();
     console.log("button clicked");
 
-    styles = {
-      textDecoration: "line-through",
-    };
+    
 
     // btnStyle = {
     //   background: "#27C62D".
