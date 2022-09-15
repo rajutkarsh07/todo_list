@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Search() {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     search: "",
   });
 
   function handleChange(event) {
-    const { name, value, type } = event.target;
+    const { name, value } = event.target;
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -17,41 +17,39 @@ export default function Search() {
     console.log(value);
   }
 
-  const [todo, setTodo] = React.useState([]);
+  const [todo, setTodo] = useState([]);
 
   function addTodo(e) {
     e.preventDefault();
-    if (formData.search !== "") {
-      setTodo((prevState) => {
-        return [...prevState, formData.search];
-      });
-      // console.log(todo);
-      setFormData({ search: "" });
-    } else {
-      return;
-    }
+    setTodo((prevState) => {
+      return [
+        ...prevState,
+        { todo: formData.search, done: false, id: Date.now() },
+      ];
+    });
+    //reset input
+    setFormData({ search: "" });
   }
 
-  console.log(todo);
-
-  let styles, btnStyle;
-
-  function completed(e) {
-    e.preventDefault();
-    console.log("button clicked");
-
-    
-
-    // btnStyle = {
-    //   background: "#27C62D".
-    // };
-  }
+  const done = (id) => {
+    let newTodo = todo.filter((todo) => todo.id !== id);
+    let data = todo.filter((todo) => todo.id === id);
+    setTodo(() => {
+      return [...newTodo, { todo: data[0].todo, done: true, id: id }];
+    });
+  };
 
   const todoList = todo.map((todo) => (
-    <div className="todo-list-item">
-      <div style={styles}>{todo}</div>
-      <button className="completed-btn" style={btnStyle} onClick={completed}>
-        Completed
+    <div key={todo.id} className="todo-list-item">
+      <p className={todo.done ? "done" : ""}>{todo.todo}</p>
+      <button
+        className="completed-btn"
+        onClick={(e) => {
+          e.preventDefault();
+          done(todo.id);
+        }}
+      >
+        Done
       </button>
     </div>
   ));
@@ -77,7 +75,7 @@ export default function Search() {
         <h4>{todo.length} todos remaining</h4>
       </div>
 
-      {todoList}
+      {todoList.length > 0 ? todoList : " Add todo"}
     </div>
   );
 }
